@@ -52,9 +52,7 @@ class Login extends Component {
 
 			  <div className="login-flex">
 			  	<p className='forgot'>Don't have an account?</p>
-			  	<Link to="/login">
-			  		<strong>Register</strong>
-			  	</Link>
+			  	<Link to="/login">Register</Link>
 			  </div>
 			</div>
 		);

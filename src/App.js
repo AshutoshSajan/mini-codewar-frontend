@@ -11,6 +11,7 @@ import Header from './components/Header';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Home from './components/Home';
+import LeaderBoard from './components/LeaderBoard';
 
 class App extends Component {
   
@@ -22,6 +23,7 @@ class App extends Component {
 		      {/* <Route exect path="/" component={Home} />*/}
 		      <Route exec path="/login" component={Login} />
 		      <Route path="/register" component={SignUp} />
+          <Route path='/leaderBoard' component={LeaderBoard} />
 	      </Switch>
       </div>
     );

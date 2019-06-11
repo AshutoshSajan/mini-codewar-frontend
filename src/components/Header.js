@@ -18,7 +18,14 @@ class Header extends Component {
 			      <li className="nav-item">
 			        <a className="nav-link" href="#">Link</a>
 			      </li>
-			      <li className="nav-item dropdown">
+			      <li className="nav-item">
+				      <Link to="/leaderBoard" className="nav-link">Leadership</Link>
+				    </li>
+				    <li className="nav-item">
+				      <Link to="/" className="nav-link">Battle Ground</Link>
+				    </li>
+
+			      {/*<li className="nav-item dropdown">
 			        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			          Dropdown
 			        </a>
@@ -31,7 +38,7 @@ class Header extends Component {
 			      </li>
 			      <li className="nav-item">
 			        <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Disabled</a>
-			      </li>
+			      </li>*/}
 			    </ul>
 			    <form className="form-inline my-2 my-lg-0">
 			      <Link to="/login" className="hdr-btn btn btn-outline-success my-2 my-sm-0" type="submit">Login</Link>
