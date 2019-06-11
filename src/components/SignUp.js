@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter, Link } from "react-router-dom";
 var url = "http://localhost:8000/api/v1"
 
 class SignUp extends Component {
@@ -57,6 +58,9 @@ class SignUp extends Component {
 			<div className='login'>
 				<form onSubmit={this.handleRegister}>
 				  <h2>Register</h2>
+				  {/*<div className="logo">
+						<img src="../../public/icon.png" alt="logo" />
+					</div>*/}
 				  <input onChange={this.handleChange} name='username' placeholder='Username' type='text' value={ this.state.user.username } required/>
 				  <input onChange={this.handleChange} id='pw' name='password' placeholder='Password' type='password' value={ this.state.user.password } required/>
 				  <input onChange={this.handleChange} id='pw' name='confirmPassword' placeholder='Confirm password' type='password' value={ this.state.user.confirmPassword} required/>
@@ -69,7 +73,9 @@ class SignUp extends Component {
 				  </form>
 				  <div className="login-flex">
 				  	<a className='forgot' href='#'>Already have an account?</a>
-			  		<span className="log-reg-btn">Login</span>
+			  		<Link to="/register">
+			  			<strong>Login</strong>
+			  		</Link>
 				  </div>
 			</div>
 		);

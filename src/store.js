@@ -1,14 +1,11 @@
 import { createStore, combineReducers } from 'redux';
-// import User  from './reducers/User';
-// import { Questions, userFormData } from './reducers/Questions';
+import user  from './reducer/user';
+import { questions } from './reducer/questions';
 
 
 const rootReducer = combineReducers({
-	// User,
-	// Questions,
-	// userFormData,
-	// Crowdsourced,
-	// Country,
+	user,
+	questions,
 })
 
 export const store = createStore(rootReducer);

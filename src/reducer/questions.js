@@ -1,4 +1,4 @@
-export function Questions(state = [], action) {
+export function questions(state = [], action) {
 	switch (action.type) {
 		case "ADD_QUESTIONS":
 		return {
@@ -15,16 +15,3 @@ export function Questions(state = [], action) {
 		}
 	}
 }
-
-// export function userFormData(state = [], action) {
-// 	switch (action.type) {
-// 		case "ADD_COUNTRY" :
-// 		return {
-// 			// ...state,
-// 			// countaryAndTrip: action.data,
-// 		};
-// 		default: {
-// 			return state
-// 		}
-// 	}
-// }
