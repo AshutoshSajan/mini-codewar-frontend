@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 var url = "http://localhost:3000/api/v1";
 
 class Login extends Component {

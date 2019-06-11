@@ -15,7 +15,7 @@
 	padding: 20px 40px;
 	margin: 0 auto;
 }
-.qusestions {
+.questions {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 }

@@ -12,7 +12,7 @@ class LeaderBoard extends Component {
 
 	render() {
 		const questions = [{
-			ques: "hello",
+			ques: "hello user wellcome to codewar",
 			a: "qwerty",
 			b: "qwerty",
 			c: "qwerty",
@@ -22,17 +22,33 @@ class LeaderBoard extends Component {
 		return (
 			<div>
 					{
-						questions.map((question, i) => {
-							return (
-								<div className="list qusestions" key={i}>
-									<p>{ question.ques}</p>
-									<p>{ question.a }</p>
-									<p>{ question.b }</p>
-									<p>{ question.c }</p>
-									<p>{ question.d }</p>
-								</div>
-							)
-						})
+						questions.map((question, i) => (
+							<div className="list" key={i}>
+								{
+									Object.keys(question).map(v => (
+										<div key={v}>
+											{ 
+												v === "ques" ?
+													<p style={{textAlign: "center"}}>{question[v]}</p>
+												: null
+											}
+											<div>
+												{
+													v === "ques" ? null :
+													<div className="questions">
+														<p>{ [v] }</p>
+														<p>
+															<span>{ question[v] }</span>
+															<input type="radio" />
+														</p>
+													</div>
+												}
+											</div>
+										</div>
+									))
+								}
+							</div>
+						))
 					}
 			</div>
 		);

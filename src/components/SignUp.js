@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 var url = "http://localhost:8000/api/v1"
 
 class SignUp extends Component {
@@ -63,7 +63,7 @@ class SignUp extends Component {
 					</div>*/}
 				  <input onChange={this.handleChange} name='username' placeholder='Username' type='text' value={ this.state.user.username } required/>
 				  <input onChange={this.handleChange} id='pw' name='password' placeholder='Password' type='password' value={ this.state.user.password } required/>
-				  <input onChange={this.handleChange} id='pw' name='confirmPassword' placeholder='Confirm password' type='password' value={ this.state.user.confirmPassword} required/>
+				  <input onChange={this.handleChange} name='confirmPassword' placeholder='Confirm password' type='password' value={ this.state.user.confirmPassword} required/>
 				  <input onChange={this.handleChange} name='email' placeholder='E-Mail Address' type='text' value={ this.state.user.email } required/>
 				  <div className='agree'>
 				    <input id='agree' name='terms' type='checkbox' checked={ this.state.user.terms } onChange={this.handleChange} required/>
@@ -72,10 +72,8 @@ class SignUp extends Component {
 				  <input className='animated' type='submit' value='Register'required onClick={this.handleRegister}/>
 				  </form>
 				  <div className="login-flex">
-				  	<a className='forgot' href='#'>Already have an account?</a>
-			  		<Link to="/register">
-			  			<strong>Login</strong>
-			  		</Link>
+				  	<p className='forgot'>Already have an account?</p>
+			  		<Link to="/register"><strong>Login</strong></Link>
 				  </div>
 			</div>
 		);

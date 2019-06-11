@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  BrowserRouter as Router,
   Route,
   Switch,
   withRouter
@@ -19,12 +18,14 @@ class App extends Component {
     return (
       <div className="App">
       	<Header />
-	      <Switch>
-		      {/* <Route exect path="/" component={Home} />*/}
-		      <Route exec path="/login" component={Login} />
+	      {
+        <Switch>
+		      <Route exact path="/" component={Home} />
+		      <Route path="/login" component={Login} />
 		      <Route path="/register" component={SignUp} />
           <Route path='/leaderBoard' component={LeaderBoard} />
 	      </Switch>
+        }
       </div>
     );
   }
