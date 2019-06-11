@@ -1,3 +1,6 @@
+@import url("./stylesheet/login.css");
+@import url("./stylesheet/signup.scss");
+
 body {
   margin: 0;
   padding: 0;
@@ -11,4 +14,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.form-control {
+	display: block;
 }
