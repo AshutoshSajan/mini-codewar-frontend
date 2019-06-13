@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-var url = "http://localhost:3000/api/v1";
+import setAuthToken from '../utils/setAuthToken';
+const axios = require('axios');
 
 class QuizBoard extends Component {
 
@@ -8,27 +9,28 @@ class QuizBoard extends Component {
 	}
 
 	componentDidMount(){
-		console.log("hello cdm");
+		const { jwt } = localStorage;
+    setAuthToken(jwt)
+    axios.get('/questions')
+    .then((res) => {
+      console.log(res, "questions...");
+      if(res.data.success){
+        this.props.dispatch({ type: "ADD_QUESTIONS", payload: res.data.questions });
+        // this.props.history.push('/');
+    		this.setState({data: res.data.questions})
+      }
+    })
+    .catch(function (error) {
+      console.log(error, "catch error");
+    });
 	}
 
 	handleSubmit = (e) => {
-		e.preventDefault();
-  	fetch(`${url}/users/info`, {
-  		method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(this.state),
-  	}).then(res => res.json())
-  	.then(data => {
-  		console.log(data, "user quiz submit...");
-			// this.props.dispatch({type: "LOGGED_USER", payload: data });
-			// this.setState();
-  	})
+		// e.preventDefault();
 	}
 
 	render() {
-		const questions = [{
+		const questions = this.state.data || [{
 			ques: "hello user wellcome to codewar",
 			a: "qwerty",
 			b: "qwerty",

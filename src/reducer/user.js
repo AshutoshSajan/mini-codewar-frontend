@@ -7,28 +7,20 @@ const initialState = {
 
 export default function User(state = initialState, action) {
 	switch (action.type) {
-		case "REGISTER":
+		case "REGISTER_USER":
 		return {
-			// ...state,
-			// user: action.user,
-			// isAuthenticated: true,
-   //    isAuthInProgress: false
+			...state,
+			user: action.payload,
+			isAuthenticated: true,
+      isAuthInProgress: false
 		};
 		case 'LOGIN':
 		return {
 			// ...state,
 			// user: action.user,
 			// isAuthenticated: true,
-   //    isAuthInProgress: false
+   		// isAuthInProgress: false
 		};
-		case 'LOGOUT':
-		return {
-			// ...state,
-			// user: null,
-			// isAuthInProgress: true,
-   //    token: '',
-   //    isAuthenticated: false
-		}
 			default: {
 				return state
 			}

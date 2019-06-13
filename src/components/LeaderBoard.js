@@ -8,23 +8,23 @@ class LeaderBoard extends Component {
 	}
 
 	componentDidMount() {
-		let jwt = localStorage.getItem("jwt") || "";
-		// fetch(`${url}/users`, {
-	  //     headers: {
-	  //       "Content-Type": "application/json",
-	  //       "Authorization": `Bearer ${jwt}`
-	  //     }
-	  // 	})
-	  // 	.then(res => res.json())
-	  // 	.then(data => {
-	  // 		console.log(data, "USER_INFO data INSIDE Leaderboard.....");
-		// 	this.props.dispatch({type: "USER_INFO", payload: data });
-		// 	this.setState({ user: {} });
-	  // 	})
+	// const { jwt } = localStorage;
+  //   setAuthToken(jwt)
+  //   axios.post('/users/info')
+  //   .then((res) => {
+  //     console.log(res, "data");
+  //     if(res.data.success){
+  //       this.props.dispatch({ type: "REGISTER_USER", payload: res.data });
+  //       this.props.history.push('/');
+  //     }
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error, "catch error");
+  //   });
 	}
 
 	render() {
-		const data = this.state.data || [] || null; 
+		const data = this.state.data || null; 
 
 		return (
 			<div>

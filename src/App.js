@@ -18,7 +18,7 @@ class App extends Component {
   componentDidMount() {
     const { jwt } = localStorage;
     setAuthToken(jwt)
-    axios.post('/users/login')
+    axios.post('/users/verify')
     .then((res) => {
       console.log(res, "data");
       if(res.data.success){
@@ -32,7 +32,8 @@ class App extends Component {
   }
   
   render() {
-    const auth = this.props.state.user.isAuthInProgress;
+    const auth = this.props.state.user.isAuthInProgress || null;
+
     return (
       <div className="App">
       	<Header />
@@ -40,13 +41,17 @@ class App extends Component {
         <Switch>
 		      <Route exact path="/" component={Home} />
 		      <Route path="/register" component={SignUp} />
+          <Route path="/login" component={Login} />
           {
-            /*<Route path="/leaderBoard" component={LeaderBoard} />
-            <Route path="/quiz" component={QuizBoard} />*/
+            <>
+              <Route path="/leaderBoard" component={LeaderBoard} />
+              <Route path="/quiz" component={QuizBoard} />
+            </>
           }
-          <PrivateRoute path='/leaderBoard' auth={auth} component={LeaderBoard} />
-          <PrivateRoute path='/quiz' auth={auth} component={QuizBoard} />
-		      <Route path="/login" component={Login} />
+          {
+            // <PrivateRoute path='/leaderBoard' auth={auth} component={LeaderBoard} />
+            // <PrivateRoute path='/quiz' auth={auth} component={QuizBoard} />
+          }
 	      </Switch>
       </div>
     );

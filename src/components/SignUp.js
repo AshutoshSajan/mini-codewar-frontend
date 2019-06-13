@@ -36,7 +36,6 @@ class SignUp extends Component {
 
 	handleRegister = (e) => {
 		e.preventDefault();
-		// console.log(this.state.user);
 		axios.post('/users/register', this.state.user)
 	  .then((res) => {
 	    console.log(res, "data");

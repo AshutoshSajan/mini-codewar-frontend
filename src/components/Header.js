@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 
 class Header extends Component {
+
+	handleLogout = () => {
+		window.localStorage.clear();
+		this.props.history.push("/login");
+	};
+
 	render() {
+		console.log(this.props.user);
+		const { user } = this.props;
+
 		return (
 			<nav className="navbar navbar-expand-lg navbar-light bg-light">
 			  <Link to="/" className="navbar-brand">
@@ -41,21 +51,30 @@ class Header extends Component {
 			        <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Disabled</a>
 			      </li>*/}
 			    </ul>
-			    <form className="form-inline my-2 my-lg-0">
-			      <Link to="/login" className="hdr-btn btn btn-outline-success my-2 my-sm-0" type="submit">Login</Link>
-			      <Link to="/register" className="hdr-btn btn btn-outline-success my-2 my-sm-0" type="submit">Sign-Up</Link>
-			      {
-			      	// <div>
-				      // 	<img src="" alt="profile pic"/>
-				      // 	<div>img circle</div>
-				      // 	<p>username</p>
-			      	// </div>
-			    	}
-			    </form>
+			    {
+			    	user.isAuthInProgress ?
+						    <form className="form-inline my-2 my-lg-0">
+						      <Link to="/login" className="hdr-btn btn btn-outline-success my-2 my-sm-0" type="submit">Login</Link>
+						      <Link to="/register" className="hdr-btn btn btn-outline-success my-2 my-sm-0" type="submit">Sign-Up</Link>
+						      {
+						      	// <div>
+							      // 	<img src="" alt="profile pic"/>
+							      // 	<div>img circle</div>
+							      // 	<p>username</p>
+						      	// </div>
+						    	}
+						    </form>
+						  : 
+						  <Link className="hdr-btn btn" type="submit" onClick={ this.handleLogout }> Logout </Link>
+					}
 			  </div>
 			</nav>
 		);
 	}
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+  return { user: state.user }
+}
+
+export default connect(mapStateToProps)(Header);
