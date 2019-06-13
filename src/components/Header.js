@@ -5,25 +5,25 @@ class Header extends Component {
 	render() {
 		return (
 			<nav className="navbar navbar-expand-lg navbar-light bg-light">
-			  <Link to="/" className="navbar-brand">Mini Codewar</Link>
+			  <Link to="/" className="navbar-brand">
+			  	<img className="logo" src="icon.png" alt="logo" />
+			  </Link>
 			  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			    <span className="navbar-toggler-icon"></span>
 			  </button>
 
 			  <div className="collapse navbar-collapse" id="navbarSupportedContent">
 			    <ul className="navbar-nav mr-auto">
-			      <li className="nav-item active">
-				      <Link to="/home" className="nav-link">Home</Link>
+			      {
+				      /*<li className="nav-item active">
+					      <Link to="/" className="nav-link">Home</Link>
+				      </li>*/
+			    	}
+			      <li className="nav-item">
+				      <Link to="/quiz" className="nav-link">Battle ground</Link>
 			      </li>
 			      <li className="nav-item">
-				      <Link to="/battle" className="nav-link">Battle ground</Link>
-			        
-			      </li>
-			      <li className="nav-item">
-				      <Link to="/leaderBoard" className="nav-link">Leadership</Link>
-				    </li>
-				    <li className="nav-item">
-				      <Link to="/" className="nav-link">Battle Ground</Link>
+				      <Link to="/leaderBoard" className="nav-link">Dashboard</Link>
 				    </li>
 
 			      {/*<li className="nav-item dropdown">

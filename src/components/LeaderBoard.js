@@ -1,55 +1,34 @@
 import React, { Component } from 'react';
+var url = "http://localhost:3000/api/v1";
 
 class LeaderBoard extends Component {
-
+	
 	state = {
-
+		data: []
 	}
 
-	componentDidMount(){
-		console.log("hello cdm");
+	componentDidMount() {
+		let jwt = localStorage.getItem("jwt") || "";
+		// fetch(`${url}/users`, {
+	  //     headers: {
+	  //       "Content-Type": "application/json",
+	  //       "Authorization": `Bearer ${jwt}`
+	  //     }
+	  // 	})
+	  // 	.then(res => res.json())
+	  // 	.then(data => {
+	  // 		console.log(data, "USER_INFO data INSIDE Leaderboard.....");
+		// 	this.props.dispatch({type: "USER_INFO", payload: data });
+		// 	this.setState({ user: {} });
+	  // 	})
 	}
 
 	render() {
-		const questions = [{
-			ques: "hello user wellcome to codewar",
-			a: "qwerty",
-			b: "qwerty",
-			c: "qwerty",
-			d: "qwerty",
-		}];
+		const data = this.state.data || [] || null; 
 
 		return (
 			<div>
-					{
-						questions.map((question, i) => (
-							<div className="list" key={i}>
-								{
-									Object.keys(question).map(v => (
-										<div key={v}>
-											{ 
-												v === "ques" ?
-													<p style={{textAlign: "center"}}>{question[v]}</p>
-												: null
-											}
-											<div>
-												{
-													v === "ques" ? null :
-													<div className="questions">
-														<p>{ [v] }</p>
-														<p>
-															<span>{ question[v] }</span>
-															<input type="radio" />
-														</p>
-													</div>
-												}
-											</div>
-										</div>
-									))
-								}
-							</div>
-						))
-					}
+				<p>Leaderboard</p>
 			</div>
 		);
 	}

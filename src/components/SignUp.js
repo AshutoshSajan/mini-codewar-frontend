@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-var url = "http://localhost:8000/api/v1"
+const axios = require('axios');
 
 class SignUp extends Component {
 
 	state = {
 		user: {
-			// username: "",
-			// password: "",
-			// email: "",
-			// terms: false,
-			// confirmPassword: ""
+			username: "",
+			password: "",
+			email: "",
+			terms: false,
+			confirmPassword: ""
 		}
 	}
 
@@ -36,27 +36,25 @@ class SignUp extends Component {
 
 	handleRegister = (e) => {
 		e.preventDefault();
-		fetch(`${url}/users/register`, {
-  		method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(this.state.user),
-  	}).then(res => res.json())
-  	.then(data => {
-  		console.log(data, "login data");
-  		if(data.token){
-  			localStorage.setItem("jwt", data.token);
-  			this.props.dispatch({type: "REGISTER_USER", payload: data });
+		// console.log(this.state.user);
+		axios.post('/users/register', this.state.user)
+	  .then((res) => {
+	    console.log(res, "data");
+	    if(res.data.success){
+  			this.props.dispatch({ type: "REGISTER_USER", payload: res.data });
   			this.setState({ user: {} });
+  			this.props.history.push('/login');
   		}
-  	})
+	  })
+	  .catch(function (error) {
+	    console.log(error, "exios fetch error!");
+	  });
 	}
 
 	render() {
 		return (
 			<div className='login'>
-				<form onSubmit={this.handleRegister}>
+				<form>
 				  <h2>Register</h2>
 				  {/*<div className="logo">
 						<img src="../../public/icon.png" alt="logo" />
@@ -69,7 +67,7 @@ class SignUp extends Component {
 				    <input id='agree' name='terms' type='checkbox' checked={ this.state.user.terms } onChange={this.handleChange} required/>
 				    <label htmlFor='agree'></label>Accept rules and conditions
 				  </div>
-				  <input className='animated' type='submit' value='Register'required onClick={this.handleRegister}/>
+				  <input className='animated' type='submit' value='Register' onClick={this.handleRegister}/>
 				  </form>
 				  <div className="login-flex">
 				  	<p className='forgot'>Already have an account?</p>

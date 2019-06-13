@@ -8,14 +8,28 @@
 	text-transform: capitalize;
 }
 
-.list {
-	background: gray;
+.logo {
+	height: 50px;
+	width: 50px;
+}
+
+/*==========================*/
+/*quiz card*/
+/*==========================*/
+
+.quiz-card {
 	width: 50%;
 	border-radius: 5px;
 	padding: 20px 40px;
-	margin: 0 auto;
+	margin: 10px auto;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
 }
 .questions {
 	display: flex;
 	justify-content: space-around;
+}
+
+.quiz-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }

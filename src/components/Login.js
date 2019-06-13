@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-var url = "http://localhost:3000/api/v1";
+const axios = require('axios');
 
 class Login extends Component {
 	
@@ -22,25 +22,26 @@ class Login extends Component {
   handleLogin = (e) => {
   	console.log("login fn()");
   	e.preventDefault();
-  	fetch(`${url}/users/login`, {
-  		method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(this.state.user),
-  	}).then(res => res.json())
-  	.then(data => {
-  		console.log(data, "login data");
-  		localStorage.setItem("jwt", data.token);
-			this.props.dispatch({type: "LOGGED_USER", payload: data });
-			this.setState({ user: {} });
-  	})
+
+  	axios.post('/users/login', this.state.user)
+	  .then((res) => {
+	    console.log(res, "data");
+	    if(res.data.success){
+  			localStorage.setItem("jwt", res.data.token);
+  			this.props.dispatch({ type: "REGISTER_USER", payload: res.data });
+  			this.setState({ user: {} });
+  			this.props.history.push('/');
+  		}
+	  })
+	  .catch(function (error) {
+	    console.log(error, "catch error");
+	  });
   }
 
 	render() {
 		return (
 			<div className='login'>
-				<form onSubmit={this.handleLogin}>
+				<form>
 				  <h2>Login</h2>
 					{/*<div className="logo">
 						<img src="../../public/icon.png" alt="logo" />
