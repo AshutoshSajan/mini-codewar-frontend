@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-var url = "http://localhost:3000/api/v1";
+import UserProfile from './UserProfile';
 
 class LeaderBoard extends Component {
 	
-	state = {
-		data: []
-	}
+	state = {}
 
 	componentDidMount() {
 	// const { jwt } = localStorage;
@@ -29,6 +27,7 @@ class LeaderBoard extends Component {
 		return (
 			<div>
 				<p>Leaderboard</p>
+				<UserProfile />
 			</div>
 		);
 	}

@@ -70,7 +70,7 @@ class SignUp extends Component {
 				  </form>
 				  <div className="login-flex">
 				  	<p className='forgot'>Already have an account?</p>
-			  		<Link to="/register"><strong>Login</strong></Link>
+			  		<Link to="/login"><strong>Login</strong></Link>
 				  </div>
 			</div>
 		);

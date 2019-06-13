@@ -14,14 +14,7 @@ export default function User(state = initialState, action) {
 			isAuthenticated: true,
       isAuthInProgress: false
 		};
-		case 'LOGIN':
-		return {
-			// ...state,
-			// user: action.user,
-			// isAuthenticated: true,
-   		// isAuthInProgress: false
-		};
-			default: {
+		default: {
 				return state
 			}
 	}

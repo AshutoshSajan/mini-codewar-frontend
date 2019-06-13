@@ -30,7 +30,7 @@ class QuizBoard extends Component {
 	}
 
 	render() {
-		const questions = this.state.data || [{
+		const questions = [{
 			ques: "hello user wellcome to codewar",
 			a: "qwerty",
 			b: "qwerty",

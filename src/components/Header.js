@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 
 class Header extends Component {
@@ -10,8 +10,8 @@ class Header extends Component {
 	};
 
 	render() {
-		console.log(this.props.user);
-		const { user } = this.props;
+		// console.log(this.props.user);
+		const { user } = this.props || null;
 
 		return (
 			<nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -77,4 +77,4 @@ const mapStateToProps = (state) => {
   return { user: state.user }
 }
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));

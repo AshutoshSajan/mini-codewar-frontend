@@ -9,7 +9,7 @@ const PrivateRoute = ({ component: Component, auth, user, ...rest }) => {
       {
         !user.isAuthInProgress ?
           <Route {...rest} render={(props) => (
-            auth
+            auth 
             	? <Component {...props} />
             	: <Redirect to={{ pathname:'/login' }} />
             )} />
