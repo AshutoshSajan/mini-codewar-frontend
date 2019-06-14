@@ -6,7 +6,7 @@ class LoggedInUser extends Component {
 
 	render() {
 		const user = this.props.user || null;
-		console.log(this.props, user)
+		// console.log(this.props, user)
 		return (
 			<Link to="/user-profile">
 				<div style={{cursor: 'pointer', zIndex:'100'}} >

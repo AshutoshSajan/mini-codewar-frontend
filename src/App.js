@@ -17,7 +17,6 @@ class App extends Component {
   
   componentDidMount() {
     const { jwt } = localStorage;
-    console.log(jwt, "cdm app...")
     if(jwt){
       setAuthToken(jwt)
       axios.post('/users/login', {
@@ -25,7 +24,7 @@ class App extends Component {
         password: "123456"
       })
       .then((res) => {
-        console.log(res, "data");
+        // console.log(res, "data");
         if(res.data.success){
           this.props.dispatch({ type: "REGISTER_USER", payload: res.data });
           this.props.history.push('/');
@@ -39,7 +38,7 @@ class App extends Component {
   
   render() {
     const isAuthenticated = this.props.state.user.isAuthenticated;
-    console.log(isAuthenticated, "app user isAuthenticated....")
+    // console.log(isAuthenticated, "app user isAuthenticated....")
 
     return (
       <div className="App">

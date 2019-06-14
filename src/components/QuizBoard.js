@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import setAuthToken from '../utils/setAuthToken';
+import { connect } from 'react-redux';
 const axios = require('axios');
 
 class QuizBoard extends Component {
 
 	state = {
-
+		score: 0
 	}
 
 	componentDidMount(){
@@ -13,11 +14,11 @@ class QuizBoard extends Component {
     setAuthToken(jwt)
     axios.get('/questions')
     .then((res) => {
-      console.log(res, "questions...");
       if(res.data.success){
-        this.props.dispatch({ type: "ADD_QUESTIONS", payload: res.data.questions });
-        // this.props.history.push('/');
-    		this.setState({data: res.data.questions})
+        this.props.dispatch({ type: "ADD_QUESTIONS", payload: res.data.questions[0].questions });
+      	// this.props.history.push('/');
+    		// this.setState({ data: [...res.data.questions[0].questions] })
+    		// console.log("state set")
       }
     })
     .catch(function (error) {
@@ -25,53 +26,52 @@ class QuizBoard extends Component {
     });
 	}
 
-	handleSubmit = (e) => {
-		// e.preventDefault();
+	handleChange = (e) => {
+		const { name, value } = e.target;
+		console.log(name, value); 
+	}
+
+	handleSubmit = (e, id) => {
+		e.preventDefault();
+		console.dir(e.target);
+		console.log(id, e.target,"handleSubmit fired");
 	}
 
 	render() {
-		const questions = [{
-			ques: "hello user wellcome to codewar",
-			a: "qwerty",
-			b: "qwerty",
-			c: "qwerty",
-			d: "qwerty",
-		}];
-
+		const questions = this.props.questions;
+		
 		return (
 			<div>
 					{
-						questions.map((question, i) => (
-							<div className="quiz-card" key={i}>
+						!questions ? null :
+							questions.map((ques, ind) => (
+								<div className="quiz-card" key={ind} data-id={ques._id}>
 								{
-									Object.keys(question).map(v => (
-										<div key={v}>
-											{ 
-												v === "ques" ?
-													<p style={{textAlign: "center"}}>{question[v]}</p>
-												: null
-											}
-											<div>
-												{
-													v === "ques" ? null :
-													<div className="questions">
-														<p>{ [v] }</p>
-														<p>
-															<span>{ question[v] }</span>
-															<input type="checkbox" />
-														</p>
+									Object.keys(ques).join().trim().split(",").map((v,i) =>  (
+											v === "question" ? 
+												<p style={{padding: "20px 0"}} key={i} >{ques[v].toUpperCase()}</p>
+											:
+											v === "options" ? 
+												Object.keys(ques.options).filter(ans => ans !== "ANS").map((o, idx) => (
+													<div style={{display: "flex"}} key={idx}>
+														<input type="radio" name={`options${ind}`} onChange={ this.handleChange } value={ques.options[o]} checked={false} />
+														<p key={idx}>{o +" :  "+ ques.options[o]}</p>
 													</div>
-												}
-											</div>
-										</div>
+												))
+											: "" 
 									))
 								}
-							</div>
-						))
+								<button className="button is-small is-danger" style={{marginTop: '10px'}} onClick={(e)=>this.handleSubmit(e,ques._id)}>Submit</button>
+								</div>
+							))
 					}
 			</div>
 		);
 	}
 }
 
-export default QuizBoard;
+const mapStateToProps = (state) => {
+	console.log(state, "map state quix...");
+	return { questions: state.questions.data };
+}
+export default connect(mapStateToProps)(QuizBoard);

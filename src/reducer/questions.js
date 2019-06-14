@@ -3,7 +3,7 @@ export function questions(state = [], action) {
 		case "ADD_QUESTIONS":
 		return {
 			...state,
-			data: action.data,
+			data: action.payload,
 		};
 		case "ADD_USER_DATA":
 			state.push(action.data)
