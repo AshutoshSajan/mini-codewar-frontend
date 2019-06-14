@@ -10,8 +10,9 @@ import LeaderBoard from './components/LeaderBoard';
 import QuizBoard from './components/QuizBoard';
 import PrivateRoute from './components/PrivateRoute';
 import setAuthToken from './utils/setAuthToken';
-const axios = require('axios');
+import UserProfile from './components/UserProfile';
 
+const axios = require('axios');
 class App extends Component {
   
   componentDidMount() {
@@ -33,12 +34,12 @@ class App extends Component {
       .catch(function (error) {
         console.error(error, "catch error");
       });
-    } else this.props.history.push('/login');
+     } /*else this.props.history.push('/login');*/
   }
   
   render() {
-    const auth = this.props.state.user.isAuthenticated;
-    console.log(auth,"//././.")
+    const isAuthenticated = this.props.state.user.isAuthenticated;
+    console.log(isAuthenticated, "app user isAuthenticated....")
 
     return (
       <div className="App">
@@ -49,14 +50,16 @@ class App extends Component {
           <Route path="/login" component={Login} />
           {
             // <>
+            // <Route path="/user-profile" component={UserProfile} />
             //   <Route path="/leaderBoard" component={LeaderBoard} />
             //   <Route path="/quiz" component={QuizBoard} />
             // </>
           }
           {
             <>
-            <PrivateRoute path='/leaderBoard' auth={auth} component={LeaderBoard} />
-            <PrivateRoute path='/quiz' auth={auth} component={QuizBoard} />
+              <PrivateRoute path="/user-profile" auth={isAuthenticated} component={UserProfile} />
+              <PrivateRoute path='/leaderBoard' auth={isAuthenticated} component={LeaderBoard} />
+              <PrivateRoute path='/quiz' auth={isAuthenticated} component={QuizBoard} />
             </>
           }
 	      </Switch>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import UserProfile from './UserProfile';
 
 class LeaderBoard extends Component {
 	
@@ -27,7 +26,6 @@ class LeaderBoard extends Component {
 		return (
 			<div>
 				<p>Leaderboard</p>
-				<UserProfile />
 			</div>
 		);
 	}

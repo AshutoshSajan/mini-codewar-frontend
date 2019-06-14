@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
+import LoggedInUser from "./LoggedInUser";
 
 class Header extends Component {
 
-	handleLogout = () => {
+	handleLogout = (e) => {
+		e.preventDefault();
 		window.localStorage.clear();
 		this.props.history.push("/login");
 	};
@@ -65,7 +67,10 @@ class Header extends Component {
 						    	}
 						    </form>
 						  : 
-						  <Link className="hdr-btn btn" type="submit" onClick={ this.handleLogout }> Logout </Link>
+							<>
+								<LoggedInUser/>
+							  <button className="hdr-btn btn" type="submit" onClick={ this.handleLogout }> Logout </button>
+						  </>
 					}
 			  </div>
 			</nav>
