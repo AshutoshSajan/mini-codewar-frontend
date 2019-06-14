@@ -34,8 +34,8 @@ class App extends Component {
   }
   
   render() {
-    const isAuthenticated = this.props.state.user.isAuthenticated;
-    // console.log(isAuthenticated, "app user isAuthenticated....")
+    // const isAuthenticated = this.props.state.user.isAuthenticated;
+    console.log(this.props.user, "app user isAuthenticated....");
 
     return (
       <div className="App">
@@ -53,9 +53,9 @@ class App extends Component {
           }
           {
             <>
-              <PrivateRoute path="/user-profile" auth={isAuthenticated} component={UserProfile} />
-              <PrivateRoute path='/leaderBoard' auth={isAuthenticated} component={LeaderBoard} />
-              <PrivateRoute path='/quiz' auth={isAuthenticated} component={QuizBoard} />
+              <PrivateRoute path="/user-profile" auth={this.props.user.isAuthenticated} component={UserProfile} />
+              <PrivateRoute path='/leaderBoard' auth={this.props.user.isAuthenticated} component={LeaderBoard} />
+              <PrivateRoute path='/quiz' auth={this.props.user.isAuthenticated} component={QuizBoard} />
             </>
           }
 	      </Switch>
@@ -65,7 +65,10 @@ class App extends Component {
 }
 
 function mapStateToProps (state) {
-	return { state }
+	return { 
+    state,
+    user: state.user
+  }
 }
 
 export default withRouter(connect(mapStateToProps)(App));

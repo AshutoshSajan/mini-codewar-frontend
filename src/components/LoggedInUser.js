@@ -14,14 +14,14 @@ class LoggedInUser extends Component {
 	          user ? 
 	            <div style={{ display: "grid",placeItems: 'center', marginRight: '20px'}}>
 	              { 
-	                user.user.photo ? 
+	                user.user && user.user.photo ? 
 	                  <img style={{width:"40px", height: '40px', borderRadius:'50%'}} src={user.photo} alt='profile-image' /> 
 	                :
 	                <div style={{height: "40px", width: "40px", borderRadius:'50%', background: "green", display:"grid", placeItems:"center"}}>
-	                  <span style={{color:"#fff"}}>{user.user.username.slice(0,1).toUpperCase()}</span>
+	                  <span style={{color:"#fff"}}>{user.user ? user.user.username.slice(0,1).toUpperCase() : "" }</span>
 	                </div>
 	              }
-							  <p className="user-info" style={{textTransform:'capitalize'}}>{user.user.username}</p>
+							  <p className="user-info" style={{textTransform:'capitalize'}}>{user.user ? user.user.username : ""}</p>
 	            </div> 
 	          : null
 	        }

@@ -1,9 +1,10 @@
 import React from "react";
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Login from './Login';
 
 const PrivateRoute = ({ component: Component, auth, user, ...rest }) => {
-	// console.log(user, "PrivateRoute user...");
+	console.log(user, "PrivateRoute user...");
 	return(
     <div>
       {
@@ -23,4 +24,4 @@ const mapStateToProps = (state) => {
   return { user: state.user }
 }
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default withRouter(connect(mapStateToProps)(PrivateRoute));
