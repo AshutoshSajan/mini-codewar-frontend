@@ -28,7 +28,8 @@ class QuizBoard extends Component {
 
 	handleChange = (e) => {
 		const { name, value } = e.target;
-		console.log(name, value); 
+		console.log(name, value);
+		this.setState({[name]: value}); 
 	}
 
 	handleSubmit = (e, id) => {
@@ -39,7 +40,7 @@ class QuizBoard extends Component {
 
 	render() {
 		const questions = this.props.questions;
-		
+		console.log(this.state, "state...");
 		return (
 			<div>
 					{
@@ -54,14 +55,14 @@ class QuizBoard extends Component {
 											v === "options" ? 
 												Object.keys(ques.options).filter(ans => ans !== "ANS").map((o, idx) => (
 													<div style={{display: "flex"}} key={idx}>
-														<input type="radio" name={`options${ind}`} onChange={ this.handleChange } value={ques.options[o]} checked={false} />
+														<input type="radio" name={`options${ind}`} onChange={ (e) => this.handleChange(e, (`options${ind}` === ques.options.ANS))} value={ques.options[o]} /*checked={false}*/ />
 														<p key={idx}>{o +" :  "+ ques.options[o]}</p>
 													</div>
 												))
 											: "" 
 									))
 								}
-								<button className="button is-small is-danger" style={{marginTop: '10px'}} onClick={(e)=>this.handleSubmit(e,ques._id)}>Submit</button>
+								<button className="button is-small is-danger" style={{marginTop: '10px'}} onClick={(e)=>this.handleSubmit(e,`options${ind}`)}>Submit</button>
 								</div>
 							))
 					}

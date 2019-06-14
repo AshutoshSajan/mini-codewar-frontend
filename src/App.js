@@ -19,15 +19,12 @@ class App extends Component {
     const { jwt } = localStorage;
     if(jwt){
       setAuthToken(jwt)
-      axios.post('/users/login', {
-        email: "qwerty111@gmail.com",
-        password: "123456"
-      })
-      .then((res) => {
-        // console.log(res, "data");
+      axios.get('/users/me')
+      .then(res => {
+        console.log(res, "app user data...");
         if(res.data.success){
           this.props.dispatch({ type: "REGISTER_USER", payload: res.data });
-          this.props.history.push('/');
+          // this.props.history.push('/');
         }
       })
       .catch(function (error) {
